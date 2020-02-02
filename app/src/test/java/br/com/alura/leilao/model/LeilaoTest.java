@@ -34,4 +34,17 @@ public class LeilaoTest {
 
         assertEquals(430.0, maiorLanceDevolvido, 0.0001);
     }
+
+    @Test
+    public void getMaiorLanceComMaisDeUmLanceEmOrdemDecrescenteDevolveMaiorLance() {
+        Leilao leilao = new Leilao("Console");
+        leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
+        leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
+        leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));
+        leilao.propoe(new Lance(new Usuario("Steve"), 200.0));
+
+        double maiorLanceDevolvido = leilao.getMaiorLance();
+
+        assertEquals(500.0, maiorLanceDevolvido, 0.0001);
+    }
 }

@@ -14,13 +14,12 @@ public class LeilaoTest {
     }
 
     @Test
-    public void getMaiorLance() {
+    public void getMaiorLanceComUmLanceDevolveMaiorLance() {
         Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 200.0));
-        leilao.propoe(new Lance(new Usuario("Joao"), 300.0));
 
         double maiorLanceDevolvido = leilao.getMaiorLance();
 
-        assertEquals(300.0, maiorLanceDevolvido, 0.0001);
+        assertEquals(200.0, maiorLanceDevolvido, 0.0001);
     }
 }

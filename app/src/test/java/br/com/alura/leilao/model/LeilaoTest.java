@@ -41,10 +41,24 @@ public class LeilaoTest {
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
         leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
         leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));
-        leilao.propoe(new Lance(new Usuario("Steve"), 200.0));
 
         double maiorLanceDevolvido = leilao.getMaiorLance();
 
         assertEquals(500.0, maiorLanceDevolvido, 0.0001);
+    }
+
+    @Test
+    public void getMaiorLanceComMaisDeUmLanceEmOrdemAleatoriaDevolveMaiorLance() {
+        Leilao leilao = new Leilao("Console");
+        leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
+        leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
+        leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));
+        leilao.propoe(new Lance(new Usuario("Steve"), 300.0));
+        leilao.propoe(new Lance(new Usuario("Marta"), 200.0));
+        leilao.propoe(new Lance(new Usuario("Flavio"), 600.0));
+
+        double maiorLanceDevolvido = leilao.getMaiorLance();
+
+        assertEquals(600.0, maiorLanceDevolvido, 0.0001);
     }
 }

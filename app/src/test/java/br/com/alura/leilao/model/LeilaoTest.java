@@ -61,4 +61,53 @@ public class LeilaoTest {
 
         assertEquals(600.0, maiorLanceDevolvido, 0.0001);
     }
+
+    @Test
+    public void deve_DevolverMenorLance_QaundoMaiorLanceComUmLance() {
+        Leilao leilao = new Leilao("Console");
+        leilao.propoe(new Lance(new Usuario("Rodrigo"), 200.0));
+
+        double menorLanceDevolvido = leilao.getMenorLance();
+
+        assertEquals(200.0, menorLanceDevolvido, 0.0001);
+    }
+
+    @Test
+    public void deve_DevolverMenorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemCrescente() {
+        Leilao leilao = new Leilao("Console");
+        leilao.propoe(new Lance(new Usuario("Rodrigo"), 200.0));
+        leilao.propoe(new Lance(new Usuario("Luiza"), 300.0));
+        leilao.propoe(new Lance(new Usuario("Olavo"), 430.0));
+
+        double menorLanceDevolvido = leilao.getMenorLance();
+
+        assertEquals(200, menorLanceDevolvido, 0.0001);
+    }
+
+    @Test
+    public void deve_DevolverMenorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemDecrescente() {
+        Leilao leilao = new Leilao("Console");
+        leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
+        leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
+        leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));
+
+        double menorLanceDevolvido = leilao.getMenorLance();
+
+        assertEquals(130, menorLanceDevolvido, 0.0001);
+    }
+
+    @Test
+    public void deve_DevolverMenoorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemAleatoria() {
+        Leilao leilao = new Leilao("Console");
+        leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
+        leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
+        leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));
+        leilao.propoe(new Lance(new Usuario("Steve"), 300.0));
+        leilao.propoe(new Lance(new Usuario("Marta"), 200.0));
+        leilao.propoe(new Lance(new Usuario("Flavio"), 600.0));
+
+        double menorLanceDevolvido = leilao.getMenorLance();
+
+        assertEquals(130, menorLanceDevolvido, 0.0001);
+    }
 }

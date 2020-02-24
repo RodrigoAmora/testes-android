@@ -1,21 +1,27 @@
 package br.com.alura.leilao.model;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class LeilaoTest {
 
+    private Leilao leilao;
+
+    @Before
+    public void init() {
+        leilao = new Leilao("Console");
+    }
+
     @Test
     public void deve_DevolverDescricao_QuandoReceberDescricao() {
-        Leilao leilao = new Leilao("Console");
         String descricaoDevolvida = leilao.getDescricao();
         assertEquals("Console", descricaoDevolvida);
     }
 
     @Test
     public void deve_DevolverMaiorLance_QaundoMaiorLanceComUmLance() {
-        Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 200.0));
 
         double maiorLanceDevolvido = leilao.getMaiorLance();
@@ -25,7 +31,6 @@ public class LeilaoTest {
 
     @Test
     public void deve_DevolverMaiorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemCrescente() {
-        Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 200.0));
         leilao.propoe(new Lance(new Usuario("Luiza"), 300.0));
         leilao.propoe(new Lance(new Usuario("Olavo"), 430.0));
@@ -37,7 +42,6 @@ public class LeilaoTest {
 
     @Test
     public void deve_DevolverMaiorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemDecrescente() {
-        Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
         leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
         leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));
@@ -49,7 +53,6 @@ public class LeilaoTest {
 
     @Test
     public void deve_DevolverMaiorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemAleatoria() {
-        Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
         leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
         leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));
@@ -64,7 +67,6 @@ public class LeilaoTest {
 
     @Test
     public void deve_DevolverMenorLance_QaundoMaiorLanceComUmLance() {
-        Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 200.0));
 
         double menorLanceDevolvido = leilao.getMenorLance();
@@ -74,7 +76,6 @@ public class LeilaoTest {
 
     @Test
     public void deve_DevolverMenorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemCrescente() {
-        Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 200.0));
         leilao.propoe(new Lance(new Usuario("Luiza"), 300.0));
         leilao.propoe(new Lance(new Usuario("Olavo"), 430.0));
@@ -86,7 +87,6 @@ public class LeilaoTest {
 
     @Test
     public void deve_DevolverMenorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemDecrescente() {
-        Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
         leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
         leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));
@@ -98,7 +98,6 @@ public class LeilaoTest {
 
     @Test
     public void deve_DevolverMenoorLance_QuandoMaiorLanceComMaisDeUmLanceEmOrdemAleatoria() {
-        Leilao leilao = new Leilao("Console");
         leilao.propoe(new Lance(new Usuario("Rodrigo"), 500.0));
         leilao.propoe(new Lance(new Usuario("Luiza"), 220.0));
         leilao.propoe(new Lance(new Usuario("Olavo"), 130.0));

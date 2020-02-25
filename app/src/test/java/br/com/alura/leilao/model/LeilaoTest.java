@@ -3,6 +3,8 @@ package br.com.alura.leilao.model;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class LeilaoTest {
@@ -108,5 +110,50 @@ public class LeilaoTest {
         double menorLanceDevolvido = leilao.getMenorLance();
 
         assertEquals(130, menorLanceDevolvido, 0.0001);
+    }
+
+    @Test
+    public void deve_DevolverOsTresMaioresLances_QuandoRecebeTresLances() {
+        leilao.propoe(new Lance(rodrigo, 500.0));
+        leilao.propoe(new Lance(luiza, 600.0));
+        leilao.propoe(new Lance(olavo, 700.0));
+
+        List<Lance> tresMaioresLances = leilao.tresMaioresLances();
+
+        assertEquals(3, tresMaioresLances.size());
+    }
+
+    @Test
+    public void deve_DevolverOsTresMaioresLances_QuandoNaoRecebeLances() {
+        List<Lance> tresMaioresLances = leilao.tresMaioresLances();
+        assertEquals(0, tresMaioresLances.size());
+    }
+
+    @Test
+    public void deve_DevolverOsTresMaioresLances_QuandoRecebeUmLances() {
+        leilao.propoe(new Lance(rodrigo, 100.0));
+        List<Lance> tresMaioresLances = leilao.tresMaioresLances();
+        assertEquals(1, tresMaioresLances.size());
+    }
+
+    @Test
+    public void deve_DevolverOsTresMaioresLances_QuandoRecebeDoisLances() {
+        leilao.propoe(new Lance(rodrigo, 100.0));
+        leilao.propoe(new Lance(luiza, 210.0));
+
+        List<Lance> tresMaioresLances = leilao.tresMaioresLances();
+        assertEquals(2, tresMaioresLances.size());
+    }
+
+    @Test
+    public void deve_DevolverOsTresMaioresLances_QuandoRecebeQuatroLances() {
+        leilao.propoe(new Lance(rodrigo, 100.0));
+        leilao.propoe(new Lance(luiza, 210.0));
+        leilao.propoe(new Lance(olavo, 333.0));
+        leilao.propoe(new Lance(new Usuario("Mario"), 120.0));
+
+        List<Lance> tresMaioresLances = leilao.tresMaioresLances();
+        assertEquals(3, tresMaioresLances.size());
+        assertEquals(333.0, tresMaioresLances.get(0).getValor(), 0.0001);
     }
 }

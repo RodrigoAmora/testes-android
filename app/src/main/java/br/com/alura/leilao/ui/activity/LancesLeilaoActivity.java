@@ -14,6 +14,7 @@ public class LancesLeilaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lances_leilao);
+
         Intent dadosRecebidos = getIntent();
         if(dadosRecebidos.hasExtra("leilao")){
             Leilao leilao = (Leilao) dadosRecebidos.getSerializableExtra("leilao");
